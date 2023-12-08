@@ -42,9 +42,11 @@ public_users.get('/author/:author',function (req, res) {
   //Write your code here
   const author = req.params.author;
   let filtered_books = (author) => {
+    const filtered_books = [];
     for (const [key,value] of Object.entries(books)) { 
-      if (value.author === author) return books[key];
+      if (value.author === author) filtered_books.push(books[key]);
     }
+    return filtered_books;
   }
   res.send(filtered_books(author));
   //return res.status(300).json({message: "Yet to be implemented"});
@@ -55,9 +57,11 @@ public_users.get('/title/:title',function (req, res) {
   //Write your code here
   const title = req.params.title;
   let filtered_books = (title) => {
+    const filtered_books = [];
     for (const [key,value] of Object.entries(books)) { 
-      if (value.title === title) return books[key];
+      if (value.title === title) filtered_books.push(books[key]);
     }
+    return filtered_books;
   }
   res.send(filtered_books(title));
   //return res.status(300).json({message: "Yet to be implemented"});
