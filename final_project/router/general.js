@@ -25,7 +25,10 @@ public_users.post("/register", (req,res) => {
 // Get the book list available in the shop
 public_users.get('/',function (req, res) {
   //Write your code here
-  res.send(JSON.stringify(books,null,4));
+  let bookPromise = new Promise(resolve => {resolve(JSON.stringify(books,null,4))})
+  bookPromise.then((booklist) => {res.send(booklist)})
+
+  //res.send(JSON.stringify(books,null,4));
   //return res.status(300).json({message: "Yet to be implemented"});
 });
 
@@ -33,7 +36,10 @@ public_users.get('/',function (req, res) {
 public_users.get('/isbn/:isbn',function (req, res) {
   //Write your code here
   const isbn = parseInt(req.params.isbn);
-  res.send(books[isbn]);
+  let bookPromise = new Promise(resolve => {resolve(books[isbn])})
+  bookPromise.then((booklist) => {res.send(booklist)})
+
+  //res.send(books[isbn]);
   //return res.status(300).json({message: "Yet to be implemented"});
  });
   
@@ -48,7 +54,11 @@ public_users.get('/author/:author',function (req, res) {
     }
     return filtered_books;
   }
-  res.send(filtered_books(author));
+
+  let bookPromise = new Promise(resolve => {resolve(filtered_books(author))})
+  bookPromise.then((booklist) => {res.send(booklist)})
+
+  //res.send(filtered_books(author));
   //return res.status(300).json({message: "Yet to be implemented"});
 });
 
@@ -63,7 +73,11 @@ public_users.get('/title/:title',function (req, res) {
     }
     return filtered_books;
   }
-  res.send(filtered_books(title));
+
+  let bookPromise = new Promise(resolve => {resolve(filtered_books(title))})
+  bookPromise.then((booklist) => {res.send(booklist)})
+  
+  //res.send(filtered_books(title));
   //return res.status(300).json({message: "Yet to be implemented"});
 });
 
